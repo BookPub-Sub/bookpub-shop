@@ -1,0 +1,69 @@
+:toc:
+==== 주문 단건 조회
+
+===== 요청구조
+
+include::../../../../target/snippets/order-detail/http-request.adoc[]
+
+===== 요청 파라미터들
+
+include::../../../../target/snippets/order-detail/path-parameters.adoc[]
+
+===== 응답구조
+
+include::../../../../target/snippets/order-detail/http-response.adoc[]
+
+===== 응답 파라미터들
+
+include::../../../../target/snippets/order-detail/response-fields.adoc[]
+
+==== 주문 리스트 조회
+
+===== 요청구조
+
+include::../../../../target/snippets/order-list/http-request.adoc[]
+
+===== 응답구조
+
+include::../../../../target/snippets/order-list/http-response.adoc[]
+
+===== 응답 파라미터들
+
+include::../../../../target/snippets/order-list/response-fields.adoc[]
+
+==== 결제 전 주문 확인 조회
+
+===== 요청구조
+
+include::../../../../target/snippets/order-confirm/http-request.adoc[]
+
+===== 요청 파라미터들
+
+include::../../../../target/snippets/order-confirm/path-parameters.adoc[]
+
+===== 응답구조
+
+include::../../../../target/snippets/order-confirm/http-response.adoc[]
+
+===== 응답 파라미터들
+
+include::../../../../target/snippets/order-confirm/response-fields.adoc[]
+
+
+==== 비회원 주문 조회
+
+===== 요청구조
+
+include::../../../../target/snippets/non-order-detail/http-request.adoc[]
+
+===== 요청 파라미터들
+
+include::../../../../target/snippets/non-order-detail/path-parameters.adoc[]
+
+===== 응답구조
+
+include::../../../../target/snippets/non-order-detail/http-response.adoc[]
+
+===== 응답 파라미터들
+
+include::../../../../target/snippets/order-confirm/response-fields.adoc[]

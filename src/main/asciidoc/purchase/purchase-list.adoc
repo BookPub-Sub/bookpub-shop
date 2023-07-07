@@ -1,0 +1,13 @@
+:toc:
+==== 매입 리스트 조회
+매입(Purchase) 를 조회에 대한 API 명세입니다.
+
+===== 요청구조
+include::../../../../target/snippets/purchaseList-get/http-request.adoc[]
+
+===== 응답 구조
+include::../../../../target/snippets/purchaseList-get/http-response.adoc[]
+
+===== 응답 파라미터들
+
+include::../../../../target/snippets/purchaseList-get/response-fields.adoc[]
