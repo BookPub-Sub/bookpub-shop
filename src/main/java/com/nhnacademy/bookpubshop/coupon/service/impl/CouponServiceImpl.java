@@ -253,78 +253,78 @@ public class CouponServiceImpl implements CouponService {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Transactional
-    public void issueCouponMonth(Long memberNo, Long templateNo)
-            throws JsonProcessingException {
-        IssueCouponMonthDto issueCouponMonthDto = new IssueCouponMonthDto(memberNo, templateNo);
-        // 이달의 쿠폰 정보 메세지 큐에 발행
-        couponMonthQueueProducer(issueCouponMonthDto);
-    }
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    @Transactional
+//    public void issueCouponMonth(Long memberNo, Long templateNo)
+//            throws JsonProcessingException {
+//        IssueCouponMonthDto issueCouponMonthDto = new IssueCouponMonthDto(memberNo, templateNo);
+//        // 이달의 쿠폰 정보 메세지 큐에 발행
+//        couponMonthQueueProducer(issueCouponMonthDto);
+//    }
 
-
-    /**
-     * rabbitMQ Producer 로 메세지를 생성하는 메서드입니다.
-     *
-     * @param dto 이달의 쿠폰 발행 정보 dto
-     * @throws JsonProcessingException json error
-     */
-    private void couponMonthQueueProducer(IssueCouponMonthDto dto) throws JsonProcessingException {
-
-        String request = objectMapper.writeValueAsString(dto);
-
-        rabbitTemplate.convertAndSend("amq.direct", "coupon.month", request);
-    }
-
-    /**
-     * rabbitMQ Consumer 로 큐에 메시지를 소비합니다.
-     *
-     * @param message 소비하는 메시지
-     * @throws JsonProcessingException json error
-     */
-    @RabbitListener(queues = "coupon.month.queue")
-    public void issueMonthCouponConsumer(String message) throws JsonProcessingException {
-
-        message = message.replace("\\", "");
-
-        String realMessage = message.substring(1, message.length() - 1);
-
-        IssueCouponMonthDto issueCouponMonthDto = objectMapper.readValue(realMessage,
-                IssueCouponMonthDto.class);
-
-        Long memberNo = issueCouponMonthDto.getMemberNo();
-
-        Long templateNo = issueCouponMonthDto.getTemplateNo();
-
-        //쿠폰 확인
-        CouponTemplate couponTemplate = couponTemplateRepository.findById(templateNo)
-                .orElseThrow(() -> new CouponTemplateNotFoundException(templateNo));
-
-        // 이달의 쿠폰 확인
-        CouponMonth couponMonth = couponMonthRepository.findByCouponTemplate(couponTemplate)
-                .orElseThrow(() -> new CouponMonthNotFoundException(templateNo));
-
-        boolean result = couponRepository.existsMonthCoupon(memberNo, templateNo);
-
-        if (!result) {
-            // 쿠폰이 발급되지 않았으면 발급.
-
-            Member member = memberRepository.findById(memberNo)
-                    .orElseThrow(MemberNotFoundException::new);
-
-            couponMonth.minusCouponMonthQuantity();
-
-            Coupon coupon = Coupon.builder()
-                    .couponTemplate(couponTemplate)
-                    .member(member)
-                    .build();
-
-            couponRepository.save(coupon);
-
-        }
-    }
+//
+//    /**
+//     * rabbitMQ Producer 로 메세지를 생성하는 메서드입니다.
+//     *
+//     * @param dto 이달의 쿠폰 발행 정보 dto
+//     * @throws JsonProcessingException json error
+//     */
+//    private void couponMonthQueueProducer(IssueCouponMonthDto dto) throws JsonProcessingException {
+//
+//        String request = objectMapper.writeValueAsString(dto);
+//
+//        rabbitTemplate.convertAndSend("amq.direct", "coupon.month", request);
+//    }
+//
+//    /**
+//     * rabbitMQ Consumer 로 큐에 메시지를 소비합니다.
+//     *
+//     * @param message 소비하는 메시지
+//     * @throws JsonProcessingException json error
+//     */
+//    @RabbitListener(queues = "coupon.month.queue")
+//    public void issueMonthCouponConsumer(String message) throws JsonProcessingException {
+//
+//        message = message.replace("\\", "");
+//
+//        String realMessage = message.substring(1, message.length() - 1);
+//
+//        IssueCouponMonthDto issueCouponMonthDto = objectMapper.readValue(realMessage,
+//                IssueCouponMonthDto.class);
+//
+//        Long memberNo = issueCouponMonthDto.getMemberNo();
+//
+//        Long templateNo = issueCouponMonthDto.getTemplateNo();
+//
+//        //쿠폰 확인
+//        CouponTemplate couponTemplate = couponTemplateRepository.findById(templateNo)
+//                .orElseThrow(() -> new CouponTemplateNotFoundException(templateNo));
+//
+//        // 이달의 쿠폰 확인
+//        CouponMonth couponMonth = couponMonthRepository.findByCouponTemplate(couponTemplate)
+//                .orElseThrow(() -> new CouponMonthNotFoundException(templateNo));
+//
+//        boolean result = couponRepository.existsMonthCoupon(memberNo, templateNo);
+//
+//        if (!result) {
+//            // 쿠폰이 발급되지 않았으면 발급.
+//
+//            Member member = memberRepository.findById(memberNo)
+//                    .orElseThrow(MemberNotFoundException::new);
+//
+//            couponMonth.minusCouponMonthQuantity();
+//
+//            Coupon coupon = Coupon.builder()
+//                    .couponTemplate(couponTemplate)
+//                    .member(member)
+//                    .build();
+//
+//            couponRepository.save(coupon);
+//
+//        }
+//    }
 
 }

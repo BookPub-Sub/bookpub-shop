@@ -212,18 +212,18 @@ public class CouponController {
      * @param templateNo 쿠폰 템플릿 번호
      * @return 성공일 경우 201반환. 상태값 반환
      */
-    @MemberAuth
-    @PostMapping("/token/coupons/{memberNo}/month-coupon")
-    public ResponseEntity<String> issueMonthCoupon(@PathVariable Long memberNo,
-            @RequestParam Long templateNo) throws IOException {
-
-        couponService.issueCouponMonth(memberNo, templateNo);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .contentType(MediaType.APPLICATION_JSON)
-                .build();
-
-    }
+//    @MemberAuth
+//    @PostMapping("/token/coupons/{memberNo}/month-coupon")
+//    public ResponseEntity<String> issueMonthCoupon(@PathVariable Long memberNo,
+//            @RequestParam Long templateNo) throws IOException {
+//
+//        couponService.issueCouponMonth(memberNo, templateNo);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .build();
+//
+//    }
 
     /**
      * 이달의 쿠폰 발행 여부 확인을 위한 메서드입니다.

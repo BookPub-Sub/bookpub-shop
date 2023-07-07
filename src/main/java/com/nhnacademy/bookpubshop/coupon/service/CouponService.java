@@ -107,9 +107,9 @@ public interface CouponService {
      * @param templateNo 쿠폰 템플릿 번호
      * @throws JsonProcessingException json error
      */
-    void issueCouponMonth(Long memberNo, Long templateNo)
-            throws JsonProcessingException;
-
+//    void issueCouponMonth(Long memberNo, Long templateNo)
+//            throws JsonProcessingException;
+//
     /**
      * 이달의 쿠폰 발행 여부를 확인하는 메서드입니다.
      *

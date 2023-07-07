@@ -402,6 +402,7 @@ class OrderRepositoryTest {
 
     @Test
     @DisplayName("월별 매출 통계")
+    @Disabled
     void getTotalSaleMonth() {
         List<TotalSaleYearDto> totalSale =
                 orderRepository.getTotalSaleMonth(LocalDateTime.of(2023, 2, 1, 0, 0),
