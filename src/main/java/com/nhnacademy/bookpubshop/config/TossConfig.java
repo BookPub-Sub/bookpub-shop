@@ -17,8 +17,8 @@ public class TossConfig {
     private final KeyConfig keyConfig;
     private String clientId;
     private String secret;
-    private String successUrl;
-    private String failUrl;
+//    private String successUrl;
+//    private String failUrl;
 
     public String getClientId() {
         return clientId;
@@ -36,19 +36,19 @@ public class TossConfig {
         this.secret = keyConfig.keyStore(secret);
     }
 
-    public String getSuccessUrl() {
-        return successUrl;
-    }
-
-    public void setSuccessUrl(String successUrl) {
-        this.successUrl = keyConfig.keyStore(successUrl);
-    }
-
-    public String getFailUrl() {
-        return failUrl;
-    }
-
-    public void setFailUrl(String failUrl) {
-        this.failUrl = keyConfig.keyStore(failUrl);
-    }
+//    public String getSuccessUrl() {
+//        return successUrl;
+//    }
+//
+//    public void setSuccessUrl(String successUrl) {
+//        this.successUrl = keyConfig.keyStore(successUrl);
+//    }
+//
+//    public String getFailUrl() {
+//        return failUrl;
+//    }
+//
+//    public void setFailUrl(String failUrl) {
+//        this.failUrl = keyConfig.keyStore(failUrl);
+//    }
 }
