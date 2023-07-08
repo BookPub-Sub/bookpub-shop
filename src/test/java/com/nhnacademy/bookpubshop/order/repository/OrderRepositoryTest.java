@@ -406,7 +406,7 @@ class OrderRepositoryTest {
     void getTotalSaleMonth() {
         List<TotalSaleYearDto> totalSale =
                 orderRepository.getTotalSaleMonth(LocalDateTime.of(2023, 2, 1, 0, 0),
-                        LocalDateTime.of(2023, 3, 1, 0, 0));
+                        LocalDateTime.of(9999, 8, 1, 0, 0));
 
         assertThat(totalSale).hasSize(1);
         assertThat(totalSale.get(0).getCancelOrderCnt()).isZero();
@@ -415,7 +415,7 @@ class OrderRepositoryTest {
         assertThat(totalSale.get(0).getSaleCnt()).isZero();
         assertThat(totalSale.get(0).getSaleAmount()).isZero();
         assertThat(totalSale.get(0).getTotal()).isZero();
-        assertThat(totalSale.get(0).getMonth()).isEqualTo(2);
+        assertThat(totalSale.get(0).getMonth()).isEqualTo(7);
     }
 
     @Test

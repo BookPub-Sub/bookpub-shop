@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @author : 박경서
  * @since : 1.0
  **/
-@Configuration
 @ConfigurationProperties(prefix = "storage")
 @RequiredArgsConstructor
 public class ObjectStorageProperties {
