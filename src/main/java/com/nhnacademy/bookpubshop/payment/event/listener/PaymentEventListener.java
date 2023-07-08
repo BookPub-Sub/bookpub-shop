@@ -78,7 +78,7 @@ public class PaymentEventListener {
 
         OrderProductStateCode orderProductState =
                 orderProductStateRepository
-                        .findByCodeName(OrderProductState.WAITING_DELIVERY.getName())
+                        .findByCodeName(OrderProductState.WAITING_PURCHASE_CONFIRMATION.getName())
                         .orElseThrow(NotFoundOrderProductStateException::new);
 
         orderProductList.forEach(op -> {
